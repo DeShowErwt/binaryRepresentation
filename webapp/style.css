@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "glacialIndifferenceFont";
+    src:url("fonts/GLACIAL-INDIFFERENCE.REGULAR.OTF")
+}
+
+:root {
+    background-color: #242424;
+    color: white;
+    font-family: "glacialIndifferenceFont";
+
+}
+body{
+    /* overflow: hidden; */
+}
+.counter{
+    display: fixed;
+    top: 0;
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    place-items: center;
+    min-height: 100vh;
+    justify-content: center;
+}
+.binary{
+    font-size: 120px;
+    user-select: none;
+    text-align: center;
+}
+.legendNumber{
+    color:grey;
+}
