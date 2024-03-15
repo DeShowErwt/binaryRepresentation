@@ -9,8 +9,12 @@
     font-family: "glacialIndifferenceFont";
 
 }
+binary-element{
+    display:inline;
+}
+
 body{
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 .counter{
     display: fixed;
@@ -28,7 +32,14 @@ body{
     font-size: 120px;
     user-select: none;
     text-align: center;
+    display: grid;
 }
+.bit{
+    grid-row: 1;
+}
+
 .legendNumber{
     color:grey;
+    font-size: 80px;
+    grid-row: 2;
 }
