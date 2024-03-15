@@ -2,7 +2,7 @@ export function setupCounter(element) {
     let counter = 0
     const addValue = (count) => {
       counter += count
-      element.innerHTML = `Total: ${counter}`
+      element.innerHTML = `You created the decimal number: ${counter}`
     }
     document.addEventListener('click', () => {
       counter =  0
