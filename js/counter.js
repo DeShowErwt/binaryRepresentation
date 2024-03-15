@@ -2,9 +2,9 @@ export function setupCounter(element) {
     let counter = 0
     const addValue = (count) => {
       counter += count
-      element.innerHTML = `You created the decimal number: ${counter}`
+      element.innerHTML = `Decimal number: <input min="0" max="255" value="${counter}">`
     }
-    document.addEventListener('click', () => {
+    document.querySelector('.center').addEventListener('click', () => {
       counter =  0
       // Create a bool to check if anything has changed, if not, the counter won't be updated and 
       // therefore the previous value will still be displayed, we use this bool to update it in that case

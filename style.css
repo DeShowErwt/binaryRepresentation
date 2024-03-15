@@ -3,12 +3,24 @@
     src:url("fonts/GLACIAL-INDIFFERENCE.REGULAR.OTF")
 }
 
+
 :root {
     --background : #242424;
     background-color: var(--background);
     color: white;
     font-family: "glacialIndifferenceFont";
-
+    --small-font: 20px;
+    --semi-font: 40px;
+    --large-font: 80px;
+    --huge-font: 120px;
+}
+@media screen and (max-width: 1449px){
+    :root{
+        --small-font: 15px;
+        --semi-font: 20px;
+        --large-font: 60px;
+        --huge-font: 100px;
+    }
 }
 binary-element{
     display:inline;
@@ -18,23 +30,33 @@ body{
     /* overflow: hidden; */
     max-height: 100vh;
 }
-.counter{
+.counter{ 
     display: fixed;
     top: 0;
-    font-size: 40px;
+    font-size: var(--semi-font);
     text-align: center;
+}
+
+.counter input{
+    background-color: var(--background);
+    color: white;
+    font-size: var(--semi-font);
+    width: 2.5em;
+    outline: none;
+    border: 0px;
+    text-decoration: underline grey;
 }
 
 .amountSelect li{
     user-select: none;
-    font-size: 20px;
+    font-size: var(--small-font);
     list-style-type: none;
     max-width: 100px;
     transition: font-size 1s;
 }
 
 .amountSelect li:hover{
-    font-size: 40px;
+    font-size: var(--semi-font);
     cursor: pointer;
 }
 
@@ -52,7 +74,7 @@ body{
 
 binary-element{
     width: 6em;
-    margin: 20px;
+    margin: var(--small-font);
     cursor: pointer;
 }
 
@@ -60,7 +82,7 @@ binary-element{
     --h: 1.2em;
     color: #0000;
     grid-row: 1;
-    font-size: 120px;
+    font-size: var(--huge-font);
     line-height: var(--h);
     margin-bottom: 24px;
     text-shadow:
@@ -75,7 +97,7 @@ binary-element{
 }
 
 .legendNumber{
-    font-size: 80px;
+    font-size: var(--large-font);
     grid-row: 2;
     transition: text-shadow 1.5s;
     transition: color 1s;
