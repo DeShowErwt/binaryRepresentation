@@ -1,4 +1,3 @@
-import './style.css'
 import { binaryElement } from './js/binary.js'
 import { setupCounter } from './js/counter.js'
 
