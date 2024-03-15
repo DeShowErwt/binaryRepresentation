@@ -24,7 +24,15 @@ body{
 }
 
 .amountSelect li{
+    user-select: none;
+    font-size: 20px;
     list-style-type: none;
+    transition: font-size 1s;
+}
+
+.amountSelect li:hover{
+    font-size: 40px;
+    cursor: pointer;
 }
 
 .center {
@@ -34,17 +42,26 @@ body{
     justify-content: center;
 }
 .binary{
-    font-size: 120px;
     user-select: none;
     text-align: center;
     display: grid;
+    grid-template-columns: repeat(8);
 }
 .bit{
     grid-row: 1;
+    font-size: 120px;
 }
 
 .legendNumber{
-    color:grey;
     font-size: 80px;
     grid-row: 2;
+    transition: color 1s;
+}
+
+.legendNumberToggled{
+    color:#afafaf;
+}
+
+.legendNumberUntoggled{
+    color: #494949;  
 }
