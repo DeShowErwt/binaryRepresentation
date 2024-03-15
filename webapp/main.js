@@ -7,7 +7,7 @@ let bitList = [1]
 function displayList(chosenList){
     const binary = document.querySelector('.binary')
     binary.innerHTML = ''
-    for(let i = 0; i<chosenList.length;i++){
+    for(let i = chosenList.length-1; i>=0;i--){
          binary.innerHTML += `
             <binary-element data-value="${byteList[i]}"></binary-element>
         `

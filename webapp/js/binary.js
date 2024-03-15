@@ -5,6 +5,7 @@ export class binaryElement extends HTMLElement {
   }
 
   _setBinary(target){
+    
     let legendClasses = target.querySelector('.legendNumber').classList
     // For the correct color representation of the legendNumber use this toggle with the classname to be used if it is not
     let toggle = 'legendNumberUntoggled'
@@ -23,7 +24,13 @@ export class binaryElement extends HTMLElement {
   render(){
     this.innerHTML = `<div class="bit">${+ this.state}</div><div class="legendNumber">${this.dataset.value}</div>`
     this.querySelector('.legendNumber').classList.add('legendNumberUntoggled')
-    this.addEventListener('click', () => this._setBinary(this))
+    this.addEventListener('mousedown', () => {
+      // Have the button get animated on a click
+      let bit = this.querySelector('.bit')
+      if(bit.classList.contains('animate')){bit.classList.remove('animate')}
+      else{bit.classList.add('animate')}
+    })
+    this.addEventListener('mouseup', ()=>this._setBinary(this))
   }
 }
 customElements.define('binary-element', binaryElement)

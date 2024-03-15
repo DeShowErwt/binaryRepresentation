@@ -4,7 +4,8 @@
 }
 
 :root {
-    background-color: #242424;
+    --background : #242424;
+    background-color: var(--background);
     color: white;
     font-family: "glacialIndifferenceFont";
 
@@ -20,6 +21,7 @@ body{
 .counter{
     display: fixed;
     top: 0;
+    font-size: 40px;
     text-align: center;
 }
 
@@ -38,30 +40,50 @@ body{
 .center {
     display: flex;
     place-items: center;
-    min-height: 80vh;
+    min-height: 70vh;
     justify-content: center;
 }
 .binary{
     user-select: none;
     text-align: center;
-    display: grid;
-    grid-template-columns: repeat(8);
+    display: flex;
 }
+
+binary-element{
+    width: 6em;
+    margin: 20px;
+}
+
 .bit{
+    --h: 1.2em;
+    color: #0000;
     grid-row: 1;
     font-size: 120px;
+    line-height: var(--h);
+    text-shadow:
+        0 calc(-1*var(--_t, 0em)) white,
+        0 calc(var(--h) - var(--_t, 0em)) white;
+    overflow: hidden;
+    transition: .2s;
+}
+
+.animate{
+    --_t : var(--h)
 }
 
 .legendNumber{
     font-size: 80px;
     grid-row: 2;
+    transition: text-shadow 1.5s;
     transition: color 1s;
 }
 
 .legendNumberToggled{
     color:#afafaf;
+    text-shadow: 0px 0px 20px #afafaf ;
 }
 
 .legendNumberUntoggled{
-    color: #494949;  
+    color: #494949;
+    text-shadow: none;  
 }
