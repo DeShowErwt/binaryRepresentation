@@ -103,16 +103,27 @@ binary-element{
 .legendNumber{
     font-size: var(--large-font);
     grid-row: 2;
-    transition: text-shadow 1.5s;
     transition: color 1s;
+}
+
+@keyframes throw-shadow{
+    from{text-shadow: none;}
+    to{text-shadow: 0 0 20px #afafaf}
+}
+
+@keyframes fade-out-shadow{
+    from{text-shadow: 0 0 20px #afafaf}
+    to{text-shadow: none;}
 }
 
 .legendNumberToggled{
     color:#afafaf;
+    animation: throw-shadow 1s ease-in;
     text-shadow: 0px 0px 20px #afafaf ;
 }
 
 .legendNumberUntoggled{
     color: #494949;
+    animation: fade-out-shadow 1s ease-out;
     text-shadow: none;  
 }
