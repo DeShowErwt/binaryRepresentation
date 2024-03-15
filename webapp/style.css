@@ -14,7 +14,8 @@ binary-element{
 }
 
 body{
-    overflow: hidden;
+    /* overflow: hidden; */
+    max-height: 100vh;
 }
 .counter{
     display: fixed;
@@ -22,10 +23,14 @@ body{
     text-align: center;
 }
 
+.amountSelect li{
+    list-style-type: none;
+}
+
 .center {
     display: flex;
     place-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
     justify-content: center;
 }
 .binary{
