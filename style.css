@@ -13,13 +13,13 @@
     --semi-font: 40px;
     --large-font: 80px;
     --huge-font: 120px;
+    --margin: 20px
 }
 @media screen and (max-width: 1449px){
     :root{
-        --small-font: 15px;
-        --semi-font: 20px;
         --large-font: 60px;
         --huge-font: 100px;
+        --margin: auto;
     }
 }
 binary-element{
@@ -45,6 +45,10 @@ body{
     outline: none;
     border: 0px;
     text-decoration: underline grey;
+}
+
+.counter input:hover{
+    text-decoration: underline #afafaf;
 }
 
 .amountSelect li{
@@ -74,7 +78,7 @@ body{
 
 binary-element{
     width: 6em;
-    margin: var(--small-font);
+    margin: var(--margin);
     cursor: pointer;
 }
 
