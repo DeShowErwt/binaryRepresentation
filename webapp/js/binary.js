@@ -5,7 +5,6 @@ export class binaryElement extends HTMLElement {
   }
 
   _setBinary(target){
-    console.log(target.name)
     this.state = !this.state
     target.innerHTML = `<span class="bit">${+ this.state}</span><span class="legendNumber">${target.dataset.value}</span>`
   }
