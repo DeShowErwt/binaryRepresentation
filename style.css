@@ -13,12 +13,13 @@
     --semi-font: 40px;
     --large-font: 80px;
     --huge-font: 120px;
-    --margin: 20px
+    --margin: 20px;
+    --legend-transision-length: 0.5s;
 }
-@media screen and (max-width: 1449px){
+@media screen and (max-width: 1050px){
     :root{
-        --large-font: 60px;
-        --huge-font: 100px;
+        --large-font: 6vw;
+        --huge-font: 10vw;
         --margin: auto;
     }
 }
@@ -27,8 +28,9 @@ binary-element{
 }
 
 body{
-    /* overflow: hidden; */
+    overflow: hidden;
     max-height: 100vh;
+    min-width: 800px;
 }
 .counter{ 
     display: fixed;
@@ -93,7 +95,7 @@ binary-element{
         0 calc(-1*var(--_t, 0em)) white,
         0 calc(var(--h) - var(--_t, 0em)) white;
     overflow: hidden;
-    transition: .2s;
+    transition: .3s;
 }
 
 .animate{
@@ -103,7 +105,7 @@ binary-element{
 .legendNumber{
     font-size: var(--large-font);
     grid-row: 2;
-    transition: color 1s;
+    transition: color var(--legend-transision-length);
 }
 
 @keyframes throw-shadow{
@@ -118,12 +120,12 @@ binary-element{
 
 .legendNumberToggled{
     color:#afafaf;
-    animation: throw-shadow 1s ease-in;
+    animation: throw-shadow var(--legend-transision-length) ease-in;
     text-shadow: 0px 0px 20px #afafaf ;
 }
 
 .legendNumberUntoggled{
     color: #494949;
-    animation: fade-out-shadow 1s ease-out;
+    animation: fade-out-shadow var(--legend-transision-length) ease-in;
     text-shadow: none;  
 }
