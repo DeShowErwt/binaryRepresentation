@@ -1,16 +1,13 @@
 export class binaryElement extends HTMLElement {
-  static observedAttributes = ['name'];
-
   constructor(){
     super();
     this.state = false;
-    // this.name = '0';
   }
 
   _setBinary(target){
     console.log(target.name)
     this.state = !this.state
-    target.innerHTML = `${+ this.state}<br><span class="legendNumber">${target.name}</span>`
+    target.innerHTML = `<span class="bit">${+ this.state}</span><span class="legendNumber">${target.dataset.value}</span>`
   }
 
   connectedCallback(){
@@ -18,7 +15,7 @@ export class binaryElement extends HTMLElement {
   }
 
   render(){
-    this.innerHTML = `${+ this.state}<br><span class="legendNumber">${this.name}</span>`
+    this.innerHTML = `<span class="bit">${+ this.state}</span><span class="legendNumber">${this.dataset.value}</span>`
     this.addEventListener('click', () => this._setBinary(this))
   }
 }

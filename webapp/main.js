@@ -9,5 +9,8 @@ for(let i = 0; i<byteList.length;i++){
 }
 
 document.querySelector('.binary').innerHTML += `
-    <binary-element name="1"></binary-element>
+    <binary-element data-value="1"></binary-element>
+    <binary-element data-value="2"></binary-element>
+    <binary-element data-value="4"></binary-element>
+    <binary-element data-value="8"></binary-element>
 `
