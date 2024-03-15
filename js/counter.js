@@ -2,7 +2,7 @@ export function setupCounter(element) {
     let counter = 0
     const addValue = (count) => {
       counter += count
-      element.innerHTML = `Decimal number: <input min="0" max="255" value="${counter}">`
+      element.innerHTML = `Decimal number: ${counter}`
     }
     document.querySelector('.center').addEventListener('click', () => {
       counter =  0
