@@ -13,7 +13,7 @@ function displayList(list){
     binary.innerHTML = ''
     for(let i = chosenList.length-1; i>=0;i--){
          binary.innerHTML += `
-            <binary-element data-value="${byteList[i]}"></binary-element>
+            <binary-element data-value="${chosenList[i]}"></binary-element>
         `
     }
     let i= 0
@@ -55,7 +55,7 @@ document.addEventListener("calculateBinary", function(decimalEvent){
             setupCounter(counter)
         }
         const bitEl = document.querySelector('binary-element')
-        // Calculation method
+        // Calculation method for 1 bit
         if(decimalEvent.detail == 0){
             if(bitEl.querySelector('.bit').textContent === '1'){
                 _setBinary(bitEl)
@@ -65,29 +65,44 @@ document.addEventListener("calculateBinary", function(decimalEvent){
         }
     }
     if(document.getElementsByTagName('binary-element').length > 1){
-        // Calculation method for more digits (no input validation as this means we have a byte and we already check our input for that in the counter method)
-        console.log('run')
+        // Calculation method for more bits (no input validation as calculateBinary handles that)
         calculateBinary(decimalEvent.detail)
     }
 })
 
 function calculateBinary(decimalNumber){
     let total = decimalNumber
+    const bitEls = document.getElementsByTagName('binary-element')
     for(let i = chosenList.length-1; i>=0;i--){
         if(total-chosenList[i] >= 0){
-            // Turn bit with dataset.value === chosenList[i] on
-            console.log(chosenList[i])
-            const bitEls = document.getElementsByTagName('binary-element')
-            for(let elementNum = 0;elementNum<bitEls.length;i++){
-                const bitEl = bitEls[elementNum] 
-                if(bitEl.dataset.value === chosenList[i]){
-                    if(bitEl.querySelector('.bit').textContent !== '1'){
+            // Turn bit with dataset.value == chosenList[i] on
+            for(let elementNum = 0;elementNum<bitEls.length;elementNum++){
+                const bitEl = bitEls[elementNum]
+                if(bitEl.dataset.value == chosenList[i]){
+                    if(bitEl.querySelector('.bit').textContent != '1'){
                         _setBinary(bitEl)
                     }
                 }
             }
-            total-=chosenList[i]
+            total -= chosenList[i]
+        } else{
+            for(let elementNum = 0;elementNum<bitEls.length;elementNum++){
+                const bitEl = bitEls[elementNum]
+                if(bitEl.dataset.value == chosenList[i]){
+                    if(bitEl.querySelector('.bit').textContent != '0'){
+                        _setBinary(bitEl)
+                    }
+                }
+            }
         } 
-        if(total === 0){break}
-   }
+    }
+    if(total > 0){
+        for(let elementNum=0; elementNum<bitEls.length;elementNum++){
+            const bitEl = bitEls[elementNum]
+            if(bitEl.querySelector('.bit').textContent != '0'){
+                _setBinary(bitEl)
+            }
+        }
+        setupCounter(counter)
+    }
 }

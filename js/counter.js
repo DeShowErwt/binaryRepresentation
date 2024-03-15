@@ -1,15 +1,14 @@
-
+let decimalNum;
 export function setupCounter(element) {
   let counter = 0
   const addValue = (count) => {
     counter += count
     element.innerHTML = `Decimal number: <input id="changableVal" min="0" max="255" value="${counter}">`
     element.addEventListener("keyup", (e)=>{
-      let decimalNum = parseInt(document.querySelector('#changableVal').value)
-      if(decimalNum >= 0 && decimalNum <= 255){
-        let decimalToBinaryEvent = new CustomEvent('calculateBinary', {bubbles: true, detail:decimalNum})
-        document.dispatchEvent(decimalToBinaryEvent);
-      }
+      if(decimalNum == parseInt(document.querySelector('#changableVal').value)){return}
+      decimalNum = parseInt(document.querySelector('#changableVal').value)
+      let decimalToBinaryEvent = new CustomEvent('calculateBinary', {bubbles: true, detail:decimalNum})
+      document.dispatchEvent(decimalToBinaryEvent);
     })
   }
   document.querySelector('.center').addEventListener('click', () => {
