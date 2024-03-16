@@ -2,24 +2,41 @@ import { binaryElement } from './js/binary.js'
 import { setupCounter } from './js/counter.js'
 
 const counter = document.querySelector('.counter')
-setupCounter(counter)
+
 const binary = document.querySelector('.binary')
+// TODO: automate the creation of byte lists and the display building extra rows
+let doubleByteList = [1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768]
 let byteList = [1,2,4,8,16,32,64,128]
 let bitList = [1]
 // Global var to be able to use the list in more functions
 let chosenList
 function displayList(list){
+    setupCounter(counter)
     chosenList = list
     binary.innerHTML = ''
+    const rowAmount = Math.ceil(chosenList.length/8)
+    for(let i=1;i<=rowAmount;i++){
+        let rowDiv = document.createElement('div')
+        rowDiv.id = 'row' + i
+        rowDiv.classList.add('row')
+        rowDiv.style.gridRow = i
+        binary.appendChild(rowDiv)
+    }
+    let currentRow = document.querySelector('#row1')
     for(let i = chosenList.length-1; i>=0;i--){
-         binary.innerHTML += `
+        if((chosenList.length-i) % 8 == 0){
+            let num = currentRow.id.slice(3)
+            currentRow = document.querySelector('#row' + num++)
+        }
+        currentRow.innerHTML += `
             <binary-element data-value="${chosenList[i]}"></binary-element>
         `
     }
-    let i= 0
-    while(i<binary.children.length){
-        binary.children[i].addEventListener('click', (e)=>_setBinary(e.currentTarget))
-        i++
+    for(let rowIndex = 0; rowIndex < binary.children.length; rowIndex++){
+        const row = binary.children[rowIndex]
+        for(let elementIndex = 0; elementIndex < row.children.length; elementIndex++){
+            row.children[elementIndex].addEventListener('click', (e)=>_setBinary(e.currentTarget))
+        }
     }
 }
 displayList(bitList)
@@ -30,12 +47,20 @@ document.querySelector('#bitSelect').addEventListener('click', function(){
     }
 })
 document.querySelector('#byteSelect').addEventListener('click', function(){
-    if(document.getElementsByTagName('binary-element').length < 2){
+    const bitAmount = document.getElementsByTagName('binary-element').length
+    if(bitAmount < 2 || bitAmount > 8){
         displayList(byteList);
+    }
+})
+document.querySelector('#doubleByteSelect').addEventListener('click', function(){
+    const bitAmount = document.getElementsByTagName('binary-element').length
+    if(bitAmount < 9){
+        displayList(doubleByteList);
     }
 })
 
 function _setBinary(target){
+    console.log(target)
     let legendClasses = target.querySelector('.legendNumber').classList
     // For the correct color representation of the legendNumber use this toggle with the classname to be used if it is not
     let toggle = 'legendNumberUntoggled'
