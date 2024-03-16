@@ -71,12 +71,18 @@ body{
     justify-content: center;
 }
 .binary{
+    display: block;
+}
+
+.row{
     user-select: none;
+    display: block;
+    min-width:fit-content;
     text-align: center;
-    display: flex;
 }
 
 binary-element{
+    display: inline;
     width: 6em;
     margin: var(--margin);
     cursor: pointer;
