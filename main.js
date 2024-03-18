@@ -58,6 +58,10 @@ document.querySelector('#doubleByteSelect').addEventListener('click', function()
     const bitAmount = document.getElementsByTagName('binary-element').length
     if(bitAmount < 9){
         displayList(doubleByteList);
+        const legendNumberList = document.getElementsByClassName('legendNumber')
+        for(let i=0;i<legendNumberList.length;i++){
+            legendNumberList[i].style.fontSize = "var(--semi-font)";
+        }
     }
 })
 
@@ -67,7 +71,10 @@ function _setBinary(target){
     let toggle = 'legendNumberUntoggled'
     target.state = !target.state
     // If the state is true we want to show its toggled, also with the legendNumber
-    if(target.state){legendClasses.remove('legendNumberUntoggled');toggle = 'legendNumberToggled'}
+    if(target.state){
+        if(legendClasses.contains('legendNumberUntoggled')){legendClasses.remove('legendNumberUntoggled')}
+        toggle = 'legendNumberToggled'
+    }
     else{legendClasses.remove('legendNumberToggled')}
     target.querySelector('.bit').innerHTML = `${+ target.state}`
     legendClasses.add(toggle)

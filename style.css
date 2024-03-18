@@ -102,7 +102,8 @@ binary-element{
 }
 
 .legendNumber{
-    font-size: var(--semi-font);
+    font-size: var(--large-font);
+    color: #494949;
     grid-row: 2;
     text-align: center;
     transition: color var(--legend-transition-length);
