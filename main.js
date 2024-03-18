@@ -4,7 +4,7 @@ import { setupCounter } from './js/counter.js'
 const counter = document.querySelector('.counter')
 
 const binary = document.querySelector('.binary')
-// TODO: automate the creation of byte lists and the display building extra rows
+// TODO: automate the creation of byte lists
 let doubleByteList = [1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768]
 let byteList = [1,2,4,8,16,32,64,128]
 let bitList = [1]
@@ -24,9 +24,11 @@ function displayList(list){
     }
     let currentRow = document.querySelector('#row1')
     for(let i = chosenList.length-1; i>=0;i--){
-        if((chosenList.length-i) % 8 == 0){
-            let num = currentRow.id.slice(3)
-            currentRow = document.querySelector('#row' + num++)
+        // If i is a multiple of 8 we go to a new row (as we display one byte per row)
+        // However we dont want to do this for the first item in the list, so we check if i isn't at the point where it started 
+        if((i+1) % 8 == 0 && i != chosenList.length-1){
+            let newRowIndex = parseInt(currentRow.id.slice(3)) + 1
+            currentRow = document.querySelector('#row' + newRowIndex)
         }
         currentRow.innerHTML += `
             <binary-element data-value="${chosenList[i]}"></binary-element>
@@ -60,7 +62,6 @@ document.querySelector('#doubleByteSelect').addEventListener('click', function()
 })
 
 function _setBinary(target){
-    console.log(target)
     let legendClasses = target.querySelector('.legendNumber').classList
     // For the correct color representation of the legendNumber use this toggle with the classname to be used if it is not
     let toggle = 'legendNumberUntoggled'
@@ -74,7 +75,6 @@ function _setBinary(target){
 
 
 document.addEventListener("calculateBinary", function(decimalEvent){
-    console.log('yo')
     if(document.getElementsByTagName('binary-element').length < 2){
         if(decimalEvent.detail > 1){
             setupCounter(counter)
