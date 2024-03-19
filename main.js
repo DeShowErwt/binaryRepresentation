@@ -1,6 +1,7 @@
 import { binaryElement } from './js/binary.js'
 import { setupCounter } from './js/counter.js'
 
+
 const counter = document.querySelector('.counter')
 
 const binary = document.querySelector('.binary')
@@ -10,6 +11,9 @@ let byteList = [1,2,4,8,16,32,64,128]
 let bitList = [1]
 // Global var to be able to use the list in more functions
 let chosenList
+
+setUpApp()
+
 function displayList(list){
     setupCounter(counter)
     chosenList = list
@@ -41,7 +45,7 @@ function displayList(list){
         }
     }
 }
-displayList(bitList)
+
 // Setup eventListeners for changing the size of the bytes
 document.querySelector('#bitSelect').addEventListener('click', function(){
     if(document.getElementsByTagName('binary-element').length > 1){
@@ -65,10 +69,16 @@ document.querySelector('#doubleByteSelect').addEventListener('click', function()
     }
 })
 
+// Function for handling binary clicks
 function _setBinary(target){
     let legendClasses = target.querySelector('.legendNumber').classList
     // For the correct color representation of the legendNumber use this toggle with the classname to be used if it is not
     let toggle = 'legendNumberUntoggled'
+    // Have the bit get animated on a click
+    let bit = target.querySelector('.bit')
+    if(bit.classList.contains('animate')){bit.classList.remove('animate')}
+    else{bit.classList.add('animate')}
+    // Change the state, if it was 1 it becomes 0 and vice versa
     target.state = !target.state
     // If the state is true we want to show its toggled, also with the legendNumber
     if(target.state){
@@ -80,28 +90,12 @@ function _setBinary(target){
     legendClasses.add(toggle)
 }
 
-
+// Eventlistener to be able to handle value changes in the counter
 document.addEventListener("calculateBinary", function(decimalEvent){
-    if(document.getElementsByTagName('binary-element').length < 2){
-        if(decimalEvent.detail > 1){
-            setupCounter(counter)
-        }
-        const bitEl = document.querySelector('binary-element')
-        // Calculation method for 1 bit
-        if(decimalEvent.detail == 0){
-            if(bitEl.querySelector('.bit').textContent === '1'){
-                _setBinary(bitEl)
-            }
-        }else{
-            _setBinary(bitEl)
-        }
-    }
-    if(document.getElementsByTagName('binary-element').length > 1){
-        // Calculation method for more bits (no input validation as calculateBinary handles that)
-        calculateBinary(decimalEvent.detail)
-    }
+    calculateBinary(decimalEvent.detail)
 })
 
+// Function for getting the right sequence of ones and zeroes
 function calculateBinary(decimalNumber){
     let total = decimalNumber
     const bitEls = document.getElementsByTagName('binary-element')
@@ -137,4 +131,9 @@ function calculateBinary(decimalNumber){
         }
         setupCounter(counter)
     }
+}
+
+function setUpApp(){
+    displayList(bitList)
+    // setUpHelpSequence()
 }
