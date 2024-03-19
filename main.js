@@ -98,29 +98,27 @@ document.addEventListener("calculateBinary", function(decimalEvent){
 // Function for getting the right sequence of ones and zeroes
 function calculateBinary(decimalNumber){
     let total = decimalNumber
+    let wantedValue;
     const bitEls = document.getElementsByTagName('binary-element')
     for(let i = chosenList.length-1; i>=0;i--){
+        // We check if the bit is to be turned on or off, and specify what we want the value of the bit to be based on that
         if(total-chosenList[i] >= 0){
-            // Turn bit with dataset.value == chosenList[i] on
-            for(let elementNum = 0;elementNum<bitEls.length;elementNum++){
-                const bitEl = bitEls[elementNum]
-                if(bitEl.dataset.value == chosenList[i]){
-                    if(bitEl.querySelector('.bit').textContent != '1'){
-                        _setBinary(bitEl)
-                    }
-                }
-            }
-            total -= chosenList[i]
+            wantedValue = '1';
+            total -= chosenList[i]    
         } else{
-            for(let elementNum = 0;elementNum<bitEls.length;elementNum++){
-                const bitEl = bitEls[elementNum]
-                if(bitEl.dataset.value == chosenList[i]){
-                    if(bitEl.querySelector('.bit').textContent != '0'){
-                        _setBinary(bitEl)
-                    }
+            wantedValue = '0'
+        }
+
+        // Turn bit with dataset.value == chosenList[i] on or off based on if it already has the wantedValue
+        for(let elementNum = 0;elementNum<bitEls.length;elementNum++){
+            const bitEl = bitEls[elementNum]
+            if(bitEl.dataset.value == chosenList[i]){
+                if(bitEl.querySelector('.bit').textContent != wantedValue){
+                    _setBinary(bitEl)
                 }
             }
-        } 
+        }
+        
     }
     if(total > 0){
         for(let elementNum=0; elementNum<bitEls.length;elementNum++){
