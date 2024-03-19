@@ -30,6 +30,9 @@
     top: 0;
     font-size: var(--semi-font);
     text-align: center;
+    min-width: 100vw;
+    position: absolute;
+    z-index: -1;
 }
 
 .counter input{
@@ -42,7 +45,7 @@
     text-decoration: underline grey;
 }
 
-.counter input:hover{
+.counter input:hover, .counter input:focus{
     text-decoration: underline #afafaf;
 }
 
@@ -80,6 +83,7 @@
     min-width: 100vw;
     justify-content: center;
     position: absolute;
+    z-index: -2;
 }
 
 .row{
