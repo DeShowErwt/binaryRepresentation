@@ -48,6 +48,8 @@
 
 .amountSelect{
     float: left;
+    z-index: 5;
+    position: absolute;
 }
 
 .amountSelect li{
@@ -75,7 +77,9 @@
     display: flex;
     place-items: center;
     min-height: 92vh;
+    min-width: 100vw;
     justify-content: center;
+    position: absolute;
 }
 
 .row{
