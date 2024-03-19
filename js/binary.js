@@ -10,12 +10,6 @@ export class binaryElement extends HTMLElement {
 
   render(){
     this.innerHTML = `<div class="bit">${+ this.state}</div><div class="legendNumber">${this.dataset.value}</div>`
-    this.addEventListener('mousedown', () => {
-      // Have the button get animated on a click
-      let bit = this.querySelector('.bit')
-      if(bit.classList.contains('animate')){bit.classList.remove('animate')}
-      else{bit.classList.add('animate')}
-    })
   }
 }
 customElements.define('binary-element', binaryElement)
