@@ -25,6 +25,7 @@
     }
 }
 
+
 .counter{ 
     display: fixed;
     top: 0;
@@ -146,4 +147,19 @@ binary-element{
     color: #494949;
     animation: fade-out-shadow var(--legend-transition-length) ease-in;
     text-shadow: none;  
+}
+
+@media screen and (max-width: 600px){
+    .icons{
+        display: none;
+    }
+
+    .counter, .counter input{
+        font-size: var(--small-font);
+    }
+
+    binary-element{
+        /* margin: 0; */
+        width: 2.5em;
+    }
 }
