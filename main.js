@@ -5,18 +5,27 @@ import { setupCounter } from './js/counter.js'
 const counter = document.querySelector('.counter')
 
 const binary = document.querySelector('.binary')
-// TODO: automate the creation of byte lists
-let doubleByteList = [1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768]
-let byteList = [1,2,4,8,16,32,64,128]
-let bitList = [1]
 // Global var to be able to use the list in more functions
 let chosenList
 
 setUpApp()
 
-function displayList(list){
+function listCreator(length){
+    let list = []
+    let newVal;
+    for(let i = 0; i < length; i++){
+        // If we have the first value we cant access the one before it, however it is always 1
+        if(i==0){list.push(1);continue}
+        // In binary the next value is always twice the last value
+        newVal = 2*list[(i-1)]
+        list.push(newVal)
+    }
+    return list
+}
+
+function displayList(listLength){
     setupCounter(counter)
-    chosenList = list
+    chosenList = listCreator(listLength)
     binary.innerHTML = ''
     const rowAmount = Math.ceil(chosenList.length/8)
     for(let i=1;i<=rowAmount;i++){
@@ -48,24 +57,22 @@ function displayList(list){
 
 // Setup eventListeners for changing the size of the bytes
 document.querySelector('#bitSelect').addEventListener('click', function(){
-    if(document.getElementsByTagName('binary-element').length > 1){
-        displayList(bitList)
+    if(document.getElementsByTagName('binary-element').length != 1){
+        displayList(1)
     }
 })
 document.querySelector('#byteSelect').addEventListener('click', function(){
     const bitAmount = document.getElementsByTagName('binary-element').length
-    if(bitAmount < 2 || bitAmount > 8){
-        displayList(byteList);
+    if(bitAmount != 8){
+        displayList(8);
     }
 })
 document.querySelector('#doubleByteSelect').addEventListener('click', function(){
     const bitAmount = document.getElementsByTagName('binary-element').length
     if(bitAmount < 9){
-        displayList(doubleByteList);
+        displayList(16);
         const legendNumberList = document.getElementsByClassName('legendNumber')
-        for(let i=0;i<legendNumberList.length;i++){
-            legendNumberList[i].style.fontSize = "var(--semi-font)";
-        }
+        for(let i=0;i<legendNumberList.length;i++){legendNumberList[i].style.fontSize = "var(--semi-font)";}
     }
 })
 
@@ -132,6 +139,6 @@ function calculateBinary(decimalNumber){
 }
 
 function setUpApp(){
-    displayList(bitList)
+    displayList(1)
     // setUpHelpSequence()
 }
