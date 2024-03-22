@@ -139,15 +139,58 @@ function calculateBinary(decimalNumber){
     }
 }
 
-function displayHelp(helpElementNum){
+function makeDraggable (element) {
+    let currentPosX = 0, currentPosY = 0, previousPosX = 0, previousPosY = 0;
+    let grabbedObject;
+    element.onmousedown = dragMouseDown;
+
+    function dragMouseDown (e) {
+        grabbedObject = e.target
+        grabbedObject.classList.add('grabbed')
+        e.preventDefault();
+        // Get the mouse cursor position and set the initial previous positions to begin
+        previousPosX = e.clientX;
+        previousPosY = e.clientY;
+        // When the mouse is let go, call the closing event
+        document.onmouseup = closeDragElement;
+        // Move the element anytime the cursor is moved
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag (e) {
+        e.preventDefault();
+        // Calculate the new cursor position by using the previous x and y positions of the mouse
+        currentPosX = previousPosX - e.clientX;
+        currentPosY = previousPosY - e.clientY;
+        // Replace the previous positions with the new x and y positions of the mouse
+        previousPosX = e.clientX;
+        previousPosY = e.clientY;
+        // Set the element's new position
+        element.style.top = (element.offsetTop - currentPosY) + 'px';
+        element.style.left = (element.offsetLeft - currentPosX) + 'px';
+    }
+
+    function closeDragElement () {
+        grabbedObject.classList.remove('grabbed')
+        // Stop moving when mouse button is released and release events
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+function displayHelp(helpElementNum, previousLeft, previousTop){
     let helpEl = document.createElement('help-dialog')
+    console.log(previousLeft, previousTop)
     helpEl.setAttribute('data-helpnum', helpElementNum)
+    helpEl.setAttribute('data-prevleft', previousLeft)
+    helpEl.setAttribute('data-prevtop', previousTop)
+    makeDraggable(helpEl);
     document.body.appendChild(helpEl)
 }
 
 document.addEventListener('continueHelp', function(event){
-    const newIndex = parseInt(event.detail) +1
-    if(newIndex < 7){displayHelp(newIndex)}
+    const newIndex = parseInt(event.detail.num) +1
+    if(newIndex < 8){displayHelp(newIndex, event.detail.posleft, event.detail.postop)}
 })
 
 function setUpHelpSequence(){
