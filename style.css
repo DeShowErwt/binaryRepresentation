@@ -27,6 +27,11 @@
     }
 }
 
+*::selection{
+    background-color: var(--light-gray);
+    color: var(--background)
+}
+
 .counter{ 
     display: fixed;
     /* The input makes the field longer than we can see, we don't want that to influence the centering as it will look skewed, therefore we margin the div to offset the added length */
