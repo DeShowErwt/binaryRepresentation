@@ -27,6 +27,9 @@ export class helpDialog extends HTMLElement {
         const continueButton = this.querySelector('.continueButton')
         if(eventType === 'normal'){
             continueButton.addEventListener('click', () => this._continueClick())
+        } else if(eventType === 'ending'){
+            continueButton.remove()
+            this.querySelector('.closeButton').textContent = 'Thanks!'
         } else {
             document.querySelector(eventType).addEventListener('click', ()=>this._continueClick(), {once:true})
             continueButton.remove()    
@@ -44,7 +47,6 @@ export class helpDialog extends HTMLElement {
     }
 
     _placeItemAtPrevious(rectLeft, rectTop){
-        console.log(rectLeft, rectTop)
         this.style.position = 'absolute'
         // Place the box at the exact same spot as the previous box's end spot
         this.style.left = rectLeft + 'px'

@@ -180,7 +180,6 @@ function makeDraggable (element) {
 
 function displayHelp(helpElementNum, previousLeft, previousTop){
     let helpEl = document.createElement('help-dialog')
-    console.log(previousLeft, previousTop)
     helpEl.setAttribute('data-helpnum', helpElementNum)
     helpEl.setAttribute('data-prevleft', previousLeft)
     helpEl.setAttribute('data-prevtop', previousTop)
@@ -190,7 +189,7 @@ function displayHelp(helpElementNum, previousLeft, previousTop){
 
 document.addEventListener('continueHelp', function(event){
     const newIndex = parseInt(event.detail.num) +1
-    if(newIndex < 8){displayHelp(newIndex, event.detail.posleft, event.detail.postop)}
+    if(newIndex < 9){displayHelp(newIndex, event.detail.posleft, event.detail.postop)}
 })
 
 function setUpHelpSequence(){
