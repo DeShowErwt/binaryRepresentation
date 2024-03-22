@@ -148,7 +148,6 @@ function displayHelp(helpElementNum){
 document.addEventListener('continueHelp', function(event){
     const newIndex = parseInt(event.detail) +1
     if(newIndex < 7){displayHelp(newIndex)}
-    console.log(newIndex)
 })
 
 function setUpHelpSequence(){
