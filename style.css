@@ -27,9 +27,10 @@
     }
 }
 
-
 .counter{ 
     display: fixed;
+    /* The input makes the field longer than we can see, we don't want that to influence the centering as it will look skewed, therefore we margin the div to offset the added length */
+    margin-left: 2em;
     top: 0;
     font-size: var(--semi-font);
     text-align: center;
@@ -42,7 +43,7 @@
     background-color: var(--background);
     color: white;
     font-size: var(--semi-font);
-    width: 2.8em;
+    width: 4em;
     outline: none;
     border: 0px;
     text-decoration: underline gray;
@@ -62,7 +63,6 @@
     user-select: none;
     font-size: var(--small-font);
     list-style-type: none;
-    max-width: 100px;
     transition: font-size 1s;
 }
 
