@@ -159,6 +159,8 @@ function setUpHelpSequence(){
                 document.body.removeChild(openDialogs[0])
             }
         }
+        // Start from the beginning
+        displayList(1)
         displayHelp(0)
     })
 }
