@@ -1,4 +1,5 @@
 import { binaryElement } from './js/binary.js'
+import { helpDialog } from './js/helpDialog.js'
 import { setupCounter } from './js/counter.js'
 
 
@@ -138,7 +139,32 @@ function calculateBinary(decimalNumber){
     }
 }
 
+function displayHelp(helpElementNum){
+    let helpEl = document.createElement('help-dialog')
+    helpEl.setAttribute('data-helpnum', helpElementNum)
+    document.body.appendChild(helpEl)
+}
+
+document.addEventListener('continueHelp', function(event){
+    const newIndex = parseInt(event.detail) +1
+    if(newIndex < 7){displayHelp(newIndex)}
+    console.log(newIndex)
+})
+
+function setUpHelpSequence(){
+    document.querySelector('#helpButton').addEventListener('click', function(e){
+        // First remove all open dialogs if they exist
+        let openDialogs = document.getElementsByTagName('help-dialog')
+        if(openDialogs !== null){
+            while(0<openDialogs.length){
+                document.body.removeChild(openDialogs[0])
+            }
+        }
+        displayHelp(0)
+    })
+}
+
 function setUpApp(){
     displayList(1)
-    // setUpHelpSequence()
+    setUpHelpSequence()
 }
