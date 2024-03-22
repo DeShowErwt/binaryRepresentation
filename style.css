@@ -15,6 +15,8 @@
     --huge-font: 120px;
     --margin: 10px;
     --legend-transition-length: 0.5s;
+    --light-gray: #afafaf;
+    --dark-gray: #494949;
     overflow: hidden;
 }
 @media screen and (max-width: 1050px){
@@ -43,11 +45,11 @@
     width: 2.8em;
     outline: none;
     border: 0px;
-    text-decoration: underline grey;
+    text-decoration: underline gray;
 }
 
 .counter input:hover, .counter input:focus{
-    text-decoration: underline #afafaf;
+    text-decoration: underline var(--light-gray);
 }
 
 .amountSelect{
@@ -75,6 +77,8 @@
 
 .icons img{
     height: 2em;
+    cursor: pointer;
+    margin-left: 1em;
 }
 
 .center {
@@ -121,7 +125,7 @@ binary-element{
 
 .legendNumber{
     font-size: var(--large-font);
-    color: #494949;
+    color: var(--dark-gray);
     grid-row: 2;
     text-align: center;
     transition: color var(--legend-transition-length);
@@ -129,22 +133,22 @@ binary-element{
 
 @keyframes throw-shadow{
     from{text-shadow: none;}
-    to{text-shadow: 0 0 20px #afafaf}
+    to{text-shadow: 0 0 20px var(--light-gray)}
 }
 
 @keyframes fade-out-shadow{
-    from{text-shadow: 0 0 20px #afafaf}
+    from{text-shadow: 0 0 20px var(--light-gray)}
     to{text-shadow: none;}
 }
 
 .legendNumberToggled{
-    color:#afafaf;
+    color: var(--light-gray);
     animation: throw-shadow var(--legend-transision-length) ease-out;
-    text-shadow: 0px 0px 20px #afafaf ;
+    text-shadow: 0px 0px 20px var(--light-gray);
 }
 
 .legendNumberUntoggled{
-    color: #494949;
+    color: var(--dark-gray);
     animation: fade-out-shadow var(--legend-transition-length) ease-in;
     text-shadow: none;  
 }
