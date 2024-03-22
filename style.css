@@ -62,6 +62,7 @@
     float: left;
     z-index: 5;
     position: absolute;
+    width: 15vw;
 }
 
 .amountSelect li{
