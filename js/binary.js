@@ -9,7 +9,7 @@ export class binaryElement extends HTMLElement {
   }
 
   render(){
-    this.innerHTML = `<div class="bit">${+ this.state}</div><div class="legendNumber">${this.dataset.value}</div>`
+    this.innerHTML = `<div class="bit"><div class="bitDisplay">0</div></div><div class="legendNumber">${this.dataset.value}</div>`
   }
 }
 customElements.define('binary-element', binaryElement)
