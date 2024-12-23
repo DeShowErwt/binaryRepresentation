@@ -94,7 +94,6 @@ function _setBinary(target){
         toggle = 'legendNumberToggled'
     }
     else{legendClasses.remove('legendNumberToggled')}
-    target.querySelector('.bit').innerHTML = `${+ target.state}`
     legendClasses.add(toggle)
 }
 
@@ -111,17 +110,17 @@ function calculateBinary(decimalNumber){
     for(let i = chosenList.length-1; i>=0;i--){
         // We check if the bit is to be turned on or off, and specify what we want the value of the bit to be based on that
         if(total-chosenList[i] >= 0){
-            wantedValue = '1';
+            wantedValue = true;
             total -= chosenList[i]    
         } else{
-            wantedValue = '0'
+            wantedValue = false
         }
 
         // Turn bit with dataset.value == chosenList[i] on or off based on if it already has the wantedValue
         for(let elementNum = 0;elementNum<bitEls.length;elementNum++){
             const bitEl = bitEls[elementNum]
             if(bitEl.dataset.value == chosenList[i]){
-                if(bitEl.querySelector('.bit').textContent != wantedValue){
+                if(bitEl.state != wantedValue){
                     _setBinary(bitEl)
                 }
             }
@@ -131,7 +130,7 @@ function calculateBinary(decimalNumber){
     if(total > 0){
         for(let elementNum=0; elementNum<bitEls.length;elementNum++){
             const bitEl = bitEls[elementNum]
-            if(bitEl.querySelector('.bit').textContent != '0'){
+            if(bitEl.state != false){
                 _setBinary(bitEl)
             }
         }

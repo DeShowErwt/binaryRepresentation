@@ -27,8 +27,8 @@ export function setupCounter(element) {
       }      
     }
     for(let bitIndex = 0; bitIndex < bits.length; bitIndex++){
-      let bitVal = bits[bitIndex].firstChild.textContent 
-      if(bitVal == '1'){
+      let bitVal = bits[bitIndex].state 
+      if(bitVal == true){
         addValue(parseInt(bits[bitIndex].dataset.value))
         empty = false;
       }
